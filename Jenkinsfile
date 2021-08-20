@@ -48,6 +48,7 @@ pipeline {
 
 		stage('Clean') {
 		  steps {
+				sh 'rpm --query centos-release'
                 sh 'chmod +x ./microservicio/gradlew'
 				sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
             }
