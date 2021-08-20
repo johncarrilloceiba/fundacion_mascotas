@@ -48,8 +48,6 @@ pipeline {
 
 		stage('Clean') {
 		  steps {
-				sh 'lsb_release -d'
-				sh 'lsb_release -a'
                 sh 'chmod +x ./microservicio/gradlew'
 				sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
             }
