@@ -13,7 +13,6 @@ pipeline {
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
     jdk 'JDK11_Centos'
-    gradle 'Gradle6.9_Centos'
   }
 /*	Versiones disponibles
       JDK8_Mac
