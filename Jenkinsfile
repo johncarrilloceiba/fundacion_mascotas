@@ -49,7 +49,8 @@ pipeline {
 		stage('Clean') {
 		  steps{
 			echo "------------>Clean<------------"
-			sh 'gradle --b ./microservicio/build.gradle clean'
+			sh 'chmod +x gradlew'
+			sh './gradlew --b ./microservicio/build.gradle clean'
 
 		  }
 		}
