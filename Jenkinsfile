@@ -12,8 +12,7 @@ pipeline {
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
-    jdk 'JDK13_Centos'
-    gradle "GRADLE_LATEST"
+    jdk 'JDK11_Centos'
   }
 /*	Versiones disponibles
       JDK8_Mac
@@ -49,14 +48,8 @@ pipeline {
 
 		stage('Clean') {
 		  steps {
-                script {
-                    def version = sh (
-                        script: "./gradlew properties -q | grep \"version:\" | awk '{print \$2}'",
-                        returnStdout: true
-                    ).trim()
-                    sh "echo Building project in version: $version"
-
-                }
+                sh 'chmod +x ./microservicio/gradlew'
+				sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
             }
 		}
 
