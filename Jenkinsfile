@@ -48,7 +48,9 @@ pipeline {
 
 		stage('Clean') {
 		  steps {
-				sh 'rpm --query centos-release'
+				sh 'apt-get -y install lsb-core'
+				sh 'lsb_release -d'
+				sh 'lsb_release -a'
                 sh 'chmod +x ./microservicio/gradlew'
 				sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
             }
