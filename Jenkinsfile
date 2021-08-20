@@ -56,12 +56,12 @@ pipeline {
 		stage('Compile & Unit Tests') {
 			steps{
 				echo "------------>compile & Unit Tests<------------"
-				sh 'gradle --b ./microservicio/build.gradle compileJava'
+				sh './microservicio/gradlew --b ./microservicio/build.gradle compileJava'
 					
 				echo "------------>Unit Tests<------------"
-				sh 'gradle --b ./microservicio/build.gradle clean'
-				sh 'gradle --b ./microservicio/build.gradle test'
-				sh 'gradle --b ./microservicio/build.gradle jacocoTestReport' 
+				sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
+				sh './microservicio/gradlew --b ./microservicio/build.gradle test'
+				sh './microservicio/gradlew --b ./microservicio/build.gradle jacocoTestReport' 
 			}
 		}
 	
@@ -80,7 +80,7 @@ pipeline {
 			steps{
 				echo "------------>Build<------------"
 				//Construir sin tarea test que se ejecutó previamente
-				sh 'gradle --b ./microservicio/build.gradle build -x test'
+				sh './microservicio/gradlew --b ./microservicio/build.gradle build -x test'
 			}
 		}
 	}
