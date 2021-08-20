@@ -26,45 +26,45 @@ pipeline {
 */
 
   //Aquí comienzan los “items” del Pipeline
-  stages{
-    stage('Checkout'){
-		steps{
-			echo "------------>Checkout<------------"
-			checkout([
-				$class: 'GitSCM', 
-				branches: [[name: '*/master']], 
-				doGenerateSubmoduleConfigurations: false, 
-				extensions: [], 
-				gitTool: 'Default', 
-				submoduleCfg: [], 
-				userRemoteConfigs: [[
-					credentialsId: 'GitHub_johncarrilloceiba', 
-					url:'https://github.com/johncarrilloceiba/fundacion_mascotas'
-				]]
-			])
+	stages{
+		stage('Checkout'){
+			steps{
+				echo "------------>Checkout<------------"
+				checkout([
+					$class: 'GitSCM', 
+					branches: [[name: '*/master']], 
+					doGenerateSubmoduleConfigurations: false, 
+					extensions: [], 
+					gitTool: 'Default', 
+					submoduleCfg: [], 
+					userRemoteConfigs: [[
+						credentialsId: 'GitHub_johncarrilloceiba', 
+						url:'https://github.com/johncarrilloceiba/fundacion_mascotas'
+					]]
+				])
+			}
 		}
-	}
 
-    stage('Clean') {
-      steps{
-        echo "------------>Clean<------------"
-        sh 'gradle --b ./microservicio/build.gradle clean'
-
-      }
-    }
-
-    stage('Compile & Unit Tests') {
-		steps{
-			echo "------------>compile & Unit Tests<------------"
-			sh 'gradle --b ./microservicio/build.gradle compileJava'
-				
-			echo "------------>Unit Tests<------------"
+		stage('Clean') {
+		  steps{
+			echo "------------>Clean<------------"
 			sh 'gradle --b ./microservicio/build.gradle clean'
-			sh 'gradle --b ./microservicio/build.gradle test'
-			sh 'gradle --b ./microservicio/build.gradle jacocoTestReport' 
+
+		  }
+		}
+
+		stage('Compile & Unit Tests') {
+			steps{
+				echo "------------>compile & Unit Tests<------------"
+				sh 'gradle --b ./microservicio/build.gradle compileJava'
+					
+				echo "------------>Unit Tests<------------"
+				sh 'gradle --b ./microservicio/build.gradle clean'
+				sh 'gradle --b ./microservicio/build.gradle test'
+				sh 'gradle --b ./microservicio/build.gradle jacocoTestReport' 
+			}
 		}
 	}
-
 
 	stage('Static Code Analysis') {
 		steps{
