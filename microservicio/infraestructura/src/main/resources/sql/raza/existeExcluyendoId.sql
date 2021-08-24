@@ -1,0 +1,1 @@
+select count(1) from raza where raza_id <> :id and raza_nombre = :nombre

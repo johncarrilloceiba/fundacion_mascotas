@@ -94,4 +94,16 @@ public class ValidadorArgumento {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }
+
+    public static void validarLongitudMaxima(Object valor, int longitudMaxima, String mensaje) {
+        if (valor.toString().length() > longitudMaxima) {
+            throw new ExcepcionLongitudValor(mensaje);
+        }
+    }
+
+    public static void validarObligatorio(Object valor, RuntimeException exception) {
+        if (valor == null) {
+            throw exception;
+        }
+    }
 }

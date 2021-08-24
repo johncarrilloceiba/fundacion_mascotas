@@ -1,0 +1,1 @@
+select count(1) from raza where raza_nombre = :nombre

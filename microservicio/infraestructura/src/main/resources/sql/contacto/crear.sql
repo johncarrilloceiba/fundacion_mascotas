@@ -1,0 +1,1 @@
+insert into contacto (cont_nombre, cont_numero) values (:nombre, :numero)

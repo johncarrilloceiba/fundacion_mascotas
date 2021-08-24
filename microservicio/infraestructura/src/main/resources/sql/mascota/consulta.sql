@@ -1,0 +1,1 @@
+select masc_id, masc_nombre, raza_id, masc_fecha_adopcion, masc_fecha_nacimiento, cont_id from mascota where masc_id = :id

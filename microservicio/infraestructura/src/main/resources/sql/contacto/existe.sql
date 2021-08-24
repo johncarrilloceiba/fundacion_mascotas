@@ -1,0 +1,1 @@
+select count(1) from contacto where cont_nombre = :nombre

@@ -1,0 +1,1 @@
+select raza_id, raza_nombre from raza where raza_id = :id

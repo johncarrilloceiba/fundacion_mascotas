@@ -1,0 +1,1 @@
+insert into donacion (dona_valor, dona_fecha_creacion, masc_id) values (:valor, :fechaCreacion, :idMascota)

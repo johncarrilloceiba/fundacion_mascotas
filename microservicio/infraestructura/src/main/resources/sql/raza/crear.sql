@@ -1,0 +1,1 @@
+insert into raza (raza_nombre) values (:nombre)
