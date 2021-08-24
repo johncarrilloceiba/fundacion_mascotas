@@ -11,6 +11,7 @@ import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.dominio.excepcion.ExceptionAdopcionSinContacto;
 import com.ceiba.dominio.excepcion.ExceptionAdopcionSinFecha;
+import com.ceiba.dominio.excepcion.ExceptionAdopcionSinSeisMesesEdadMascota;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 import com.ceiba.raza.modelo.entidad.Raza;
 
@@ -81,6 +82,7 @@ public class MascotaTest {
 		String mensaje = "Se debe ingresar la fecha de adopción de la mascota.";
 		LocalDateTime fechaNacimiento = LocalDateTime.parse("2010-01-01T00:00");
 		Raza raza = new Raza(1L, "Akita Americano");
+
 		Contacto contacto = new Contacto(1L, "Juan Carlos", "3004232232");
 
 		BasePrueba.assertThrows(() -> new Mascota(1L, "Fly Fly", fechaNacimiento, raza, null, contacto), ExceptionAdopcionSinFecha.class, mensaje);
@@ -92,9 +94,74 @@ public class MascotaTest {
 		LocalDateTime fechaAdopcion = LocalDateTime.parse("2010-07-01T00:00");
 		Raza raza = new Raza(1L, "Akita Americano");
 		Contacto contacto = new Contacto(1L, "Juan Carlos", "3004232232");
+
 		Mascota mascota = new Mascota(1L, "Fly Fly", fechaNacimiento, raza, fechaAdopcion, contacto);
 		
 		Assert.assertTrue(mascota.esAdoptado());
 	}
 
+	@Test
+	public void validarNoAdopcionMascotaDesdeCreacion () {
+		LocalDateTime fechaNacimiento = LocalDateTime.parse("2010-01-01T00:00");
+		Raza raza = new Raza(1L, "Akita Americano");
+
+		Mascota mascota = new Mascota(1L, "Fly Fly", fechaNacimiento, raza);
+		
+		Assert.assertFalse(mascota.esAdoptado());
+	}
+
+	@Test
+	public void validarCumpleanosNegativo () {
+		LocalDateTime fechaNacimiento = LocalDateTime.now();
+		fechaNacimiento = fechaNacimiento.plusYears(1);
+		Raza raza = new Raza(1L, "Akita Americano");
+
+		Mascota mascota = new Mascota(1L, "Fly Fly", fechaNacimiento, raza);
+		
+		Assert.assertFalse(mascota.esCumpleanos());
+	}
+
+	@Test
+	public void validarEdadMascotaParaAdopcion () {
+		String mensaje = "La mascota debe de tener 6 meses de edad como minimo para ser adoptada.";
+		LocalDateTime fechaNacimiento = LocalDateTime.parse("2010-01-01T00:00");
+		LocalDateTime fechaAdopcion = LocalDateTime.parse("2010-05-01T00:00");
+		Raza raza = new Raza(1L, "Akita Americano");
+		Contacto contacto = new Contacto(1L, "Juan Carlos", "3004232232");
+		
+		BasePrueba.assertThrows(() -> new Mascota(1L, "Fly Fly", fechaNacimiento, raza, fechaAdopcion, contacto),
+				ExceptionAdopcionSinSeisMesesEdadMascota.class, mensaje);
+	}
+
+	@Test
+	public void validarIdRaza () {
+		LocalDateTime fechaNacimiento = LocalDateTime.parse("2010-01-01T00:00");
+		Raza raza = new Raza(1L, "Akita Americano");
+
+		Mascota mascota = new Mascota(1L, "Fly Fly", fechaNacimiento, raza);
+		
+		Assert.assertEquals(mascota.getIdRaza(), raza.getId());
+	}
+
+	@Test
+	public void validarIdContactoEnAdopcion () {
+		LocalDateTime fechaNacimiento = LocalDateTime.parse("2010-01-01T00:00");
+		LocalDateTime fechaAdopcion = LocalDateTime.parse("2010-07-01T00:00");
+		Raza raza = new Raza(1L, "Akita Americano");
+		Contacto contacto = new Contacto(1L, "Juan Carlos", "3004232232");
+
+		Mascota mascota = new Mascota(1L, "Fly Fly", fechaNacimiento, raza, fechaAdopcion, contacto);
+		
+		Assert.assertEquals(mascota.getIdContacto(), contacto.getId());
+	}
+
+	@Test
+	public void validarIdContactoNuloSinAdopcion () {
+		LocalDateTime fechaNacimiento = LocalDateTime.parse("2010-01-01T00:00");
+		Raza raza = new Raza(1L, "Akita Americano");
+
+		Mascota mascota = new Mascota(1L, "Fly Fly", fechaNacimiento, raza);
+		
+		Assert.assertNull(mascota.getIdContacto());
+	}
 }
