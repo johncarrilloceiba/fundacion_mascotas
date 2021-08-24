@@ -37,5 +37,17 @@ public class ConsultaControladorRazaTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].nombre", is("Bulldog")));
     }
-       
+
+	@Test
+    public void consultar() throws Exception {
+        // arrange
+		Long id = 1L;
+
+        // act - assert
+		mocMvc.perform(get("/razas/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.nombre", is("Bulldog")));
+    }
 }

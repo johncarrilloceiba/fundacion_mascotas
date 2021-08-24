@@ -3,9 +3,11 @@ package com.ceiba.raza.controlador;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ceiba.raza.consulta.ManejadorConsultarRaza;
 import com.ceiba.raza.consulta.ManejadorListarRaza;
 import com.ceiba.raza.modelo.dto.DtoRaza;
 
@@ -18,9 +20,11 @@ import io.swagger.annotations.ApiOperation;
 public class ConsultaControladorRaza {
 
     private final ManejadorListarRaza manejadorListarRaza;
+    private final ManejadorConsultarRaza manejadorConsultarRaza;
 
-    public ConsultaControladorRaza(ManejadorListarRaza manejadorListarRaza) {
+    public ConsultaControladorRaza(ManejadorListarRaza manejadorListarRaza, ManejadorConsultarRaza manejadorConsultarRaza) {
         this.manejadorListarRaza = manejadorListarRaza;
+        this.manejadorConsultarRaza = manejadorConsultarRaza;
     }
 
     @GetMapping
@@ -29,4 +33,9 @@ public class ConsultaControladorRaza {
         return this.manejadorListarRaza.ejecutar();
     }
 
+    @GetMapping(value="/{id}")
+    @ApiOperation("Consultar Razas")
+    public DtoRaza consultar(@PathVariable Long id) {
+        return this.manejadorConsultarRaza.ejecutar(id);
+    }
 }

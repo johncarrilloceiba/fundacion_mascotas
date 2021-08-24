@@ -3,6 +3,7 @@ package com.ceiba.mascota.controlador;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,5 +38,17 @@ public class ConsultaControladorMascotaTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].nombre", is("Lomito")));
     }
-       
+
+	@Test
+    public void consultar() throws Exception {
+        // arrange
+		Long id = 1L;
+
+        // act - assert
+		mocMvc.perform(get("/mascotas/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.nombre", is("Lomito")));
+    }
 }
