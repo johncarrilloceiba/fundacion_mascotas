@@ -8,7 +8,6 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.ceiba.donacion.modelo.dto.DtoDonacion;
 import com.ceiba.infraestructura.jdbc.MapperResult;
-import com.ceiba.usuario.modelo.dto.DtoUsuario;
 
 public class MapeoDonacion implements RowMapper<DtoDonacion>, MapperResult {
 
