@@ -36,5 +36,18 @@ public class ConsultaControladorContactoTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].nombre", is("John Jairo Carrillo")));
     }
-       
+
+	@Test
+    public void consultar() throws Exception {
+        // arrange
+		Long id = 1L;
+
+        // act - assert
+		mocMvc.perform(get("/contactos/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.nombre", is("John Jairo Carrillo")))
+                .andExpect(jsonPath("$.numero", is("3004230343")));
+    }
 }

@@ -36,5 +36,17 @@ public class ConsultaControladorDonacionTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].valor", is(50000.0)));
     }
-       
+
+	@Test
+    public void consultar() throws Exception {
+        // arrange
+		Long id = 1L;
+
+        // act - assert
+		mocMvc.perform(get("/donaciones/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.valor", is(50000.0)));
+    }
 }

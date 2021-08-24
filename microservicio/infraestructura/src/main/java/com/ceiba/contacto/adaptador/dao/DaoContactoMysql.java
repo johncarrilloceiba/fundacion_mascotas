@@ -1,6 +1,8 @@
 package com.ceiba.contacto.adaptador.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,9 @@ public class DaoContactoMysql implements DaoContacto {
     @SqlStatement(namespace="contacto", value="listar")
     private static String sqlListar;
 
+    @SqlStatement(namespace="contacto", value="consulta")
+    private static String sqlConsulta;
+
     public DaoContactoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -28,7 +33,8 @@ public class DaoContactoMysql implements DaoContacto {
 
 	@Override
 	public DtoContacto consultar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Long> parametros = new HashMap<>();
+		parametros.put("id", id);
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlConsulta, parametros, new MapeoContacto());
 	}
 }

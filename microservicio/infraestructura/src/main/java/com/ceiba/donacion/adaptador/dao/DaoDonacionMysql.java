@@ -1,6 +1,8 @@
 package com.ceiba.donacion.adaptador.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,9 @@ public class DaoDonacionMysql implements DaoDonacion {
     @SqlStatement(namespace="donacion", value="listar")
     private static String sqlListar;
 
+    @SqlStatement(namespace="donacion", value="consulta")
+    private static String sqlConsulta;
+
     public DaoDonacionMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -29,7 +34,8 @@ public class DaoDonacionMysql implements DaoDonacion {
 
 	@Override
 	public DtoDonacion consultar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Long> parametros = new HashMap<>();
+		parametros.put("id", id);
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlConsulta, parametros, new MapeoDonacion());
 	}
 }
