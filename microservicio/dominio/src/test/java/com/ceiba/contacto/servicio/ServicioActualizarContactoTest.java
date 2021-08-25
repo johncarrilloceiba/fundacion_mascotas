@@ -22,4 +22,5 @@ public class ServicioActualizarContactoTest {
         // act - assert
         BasePrueba.assertThrows(() -> servicioActualizarContacto.ejecutar(contacto), ExcepcionDuplicidad.class, "El contacto ya existe en el sistema.");
     }
+
 }
