@@ -15,14 +15,14 @@ public class ServicioCrearMascota {
 	}
 
 	public Long ejecutar(Mascota mascota) {
-        validarExistenciaPrevia(mascota);
-        return this.repositorioMascota.crear(mascota);
-    }
+		validarExistenciaPrevia(mascota);
+		return this.repositorioMascota.crear(mascota);
+	}
 
 	private void validarExistenciaPrevia(Mascota mascota) {
-        boolean existe = this.repositorioMascota.existe(mascota.getNombre());
-        if(existe) {
-            throw new ExcepcionDuplicidad(LA_MASCOTA_YA_EXISTE_EN_EL_SISTEMA);
-        }
-    }
+		boolean existe = this.repositorioMascota.existe(mascota.getNombre());
+		if (existe) {
+			throw new ExcepcionDuplicidad(LA_MASCOTA_YA_EXISTE_EN_EL_SISTEMA);
+		}
+	}
 }
