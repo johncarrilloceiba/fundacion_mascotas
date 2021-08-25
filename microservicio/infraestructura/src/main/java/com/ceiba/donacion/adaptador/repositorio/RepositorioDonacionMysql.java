@@ -1,17 +1,15 @@
 package com.ceiba.donacion.adaptador.repositorio;
 
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ceiba.donacion.modelo.entidad.Donacion;
 import com.ceiba.donacion.puerto.repositorio.RepositorioDonacion;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.repositoriogenerico.RepositorioGenericoMysql;
 
 @Repository
-public class RepositorioDonacionMysql implements RepositorioDonacion {
-
-    private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
+public class RepositorioDonacionMysql extends RepositorioGenericoMysql<Donacion> implements RepositorioDonacion {
 
     @SqlStatement(namespace="donacion", value="crear")
     private static String sqlCrear;
@@ -23,25 +21,32 @@ public class RepositorioDonacionMysql implements RepositorioDonacion {
     private static String sqlEliminar;
 
     public RepositorioDonacionMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
-        this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
+    	super(customNamedParameterJdbcTemplate);
     }
 
     @Override
-    public Long crear(Donacion donacion) {
-        return this.customNamedParameterJdbcTemplate.crear(donacion, sqlCrear);
-    }
+	protected String getSqlCrear() {
+		return sqlCrear;
+	}
 
-    @Override
-    public void eliminar(Long id) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
+	@Override
+	protected String getSqlActualizar() {
+		return sqlActualizar;
+	}
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
-    }
+	@Override
+	protected String getSqlEliminar() {
+		return sqlEliminar;
+	}
 
-    @Override
-    public void actualizar(Donacion donacion) {
-        this.customNamedParameterJdbcTemplate.actualizar(donacion, sqlActualizar);
-    }
+	@Override
+	protected String getSqlExiste() {
+		return null;
+	}
+
+	@Override
+	protected String getSqlExisteExcluyendoId() {
+		return null;
+	}
 
 }

@@ -13,8 +13,6 @@ import com.ceiba.dominio.excepcion.ExceptionAdopcionSinFecha;
 import com.ceiba.dominio.excepcion.ExceptionAdopcionSinSeisMesesEdadMascota;
 import com.ceiba.raza.modelo.entidad.Raza;
 
-import lombok.Getter;
-
 public class Mascota {
 
 	private Long id;

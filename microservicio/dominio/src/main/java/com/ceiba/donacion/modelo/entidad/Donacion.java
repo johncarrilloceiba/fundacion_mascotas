@@ -8,8 +8,6 @@ import com.ceiba.dominio.excepcion.ExceptionValorMaximo;
 import com.ceiba.dominio.excepcion.ExceptionValorMinimo;
 import com.ceiba.mascota.modelo.entidad.Mascota;
 
-import lombok.Getter;
-
 public class Donacion {
 
 	private Long id;
@@ -70,6 +68,10 @@ public class Donacion {
 	}
 
 
+
+	public LocalDateTime getFechaCreacion() {
+		return fechaCreacion;
+	}
 
 	private static void validarValorMinimo(Double valor, Mascota mascota) {
 		if (Boolean.TRUE.equals(mascota.esCumpleanos()) && valor < VALOR_DONACION_MINIMO_CUMPLEANOS) {

@@ -1,17 +1,16 @@
 package com.ceiba.contacto.adaptador.repositorio;
 
-import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
 import com.ceiba.contacto.modelo.entidad.Contacto;
 import com.ceiba.contacto.puerto.repositorio.RepositorioContacto;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import com.ceiba.repositoriogenerico.RepositorioGenericoMysql;
 
 @Repository
-public class RepositorioContactoMysql implements RepositorioContacto {
+public class RepositorioContactoMysql extends RepositorioGenericoMysql<Contacto> implements RepositorioContacto {
 
-    private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace="contacto", value="crear")
     private static String sqlCrear;
@@ -29,41 +28,32 @@ public class RepositorioContactoMysql implements RepositorioContacto {
     private static String sqlExisteExcluyendoId;
 
     public RepositorioContactoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
-        this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
+        super(customNamedParameterJdbcTemplate);
     }
 
     @Override
-    public Long crear(Contacto contacto) {
-        return this.customNamedParameterJdbcTemplate.crear(contacto, sqlCrear);
-    }
+	protected String getSqlCrear() {
+		return sqlCrear;
+	}
 
-    @Override
-    public void eliminar(Long id) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
+	@Override
+	protected String getSqlActualizar() {
+		return sqlActualizar;
+	}
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
-    }
+	@Override
+	protected String getSqlEliminar() {
+		return sqlEliminar;
+	}
 
-    @Override
-    public boolean existe(String nombre) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("nombre", nombre);
+	@Override
+	protected String getSqlExiste() {
+		return sqlExiste;
+	}
 
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste,paramSource, Boolean.class);
-    }
+	@Override
+	protected String getSqlExisteExcluyendoId() {
+		return sqlExisteExcluyendoId;
+	}
 
-    @Override
-    public void actualizar(Contacto contacto) {
-        this.customNamedParameterJdbcTemplate.actualizar(contacto, sqlActualizar);
-    }
-
-    @Override
-    public boolean existeExcluyendoId(Long id, String nombre) {
-        MapSqlParameterSource paramSource = new MapSqlParameterSource();
-        paramSource.addValue("id", id);
-        paramSource.addValue("nombre", nombre);
-
-        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteExcluyendoId,paramSource, Boolean.class);
-    }
 }

@@ -1,9 +1,8 @@
 package com.ceiba.raza.modelo.entidad;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
-import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMinima;
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMaxima;
-import lombok.Getter;
+import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMinima;
+import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
 public class Raza {
 
