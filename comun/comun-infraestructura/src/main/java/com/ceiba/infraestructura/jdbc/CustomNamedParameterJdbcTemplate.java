@@ -28,9 +28,9 @@ public class CustomNamedParameterJdbcTemplate {
 		return keyHolder.getKey().longValue();
 	}
 	
-	public void actualizar(Object object,String sql) {
+	public Integer actualizar(Object object,String sql) {
 		MapSqlParameterSource paramSource = crearParametros(object);
-		this.namedParameterJdbcTemplate.update(sql, paramSource);
+		return this.namedParameterJdbcTemplate.update(sql, paramSource);
 	}
 	
 	private MapSqlParameterSource crearParametros(Object object) {

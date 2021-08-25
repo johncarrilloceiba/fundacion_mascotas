@@ -13,19 +13,19 @@ public class RepositorioContactoMysql extends RepositorioGenericoMysql<Contacto>
 
 
     @SqlStatement(namespace="contacto", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearContacto;
 
     @SqlStatement(namespace="contacto", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarContacto;
 
     @SqlStatement(namespace="contacto", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarContacto;
 
     @SqlStatement(namespace="contacto", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteContacto;
 
     @SqlStatement(namespace="contacto", value="existeExcluyendoId") 
-    private static String sqlExisteExcluyendoId;
+    private static String sqlExisteExcluyendoIdContacto;
 
     public RepositorioContactoMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         super(customNamedParameterJdbcTemplate);
@@ -33,27 +33,27 @@ public class RepositorioContactoMysql extends RepositorioGenericoMysql<Contacto>
 
     @Override
 	protected String getSqlCrear() {
-		return sqlCrear;
+		return sqlCrearContacto;
 	}
 
 	@Override
 	protected String getSqlActualizar() {
-		return sqlActualizar;
+		return sqlActualizarContacto;
 	}
 
 	@Override
 	protected String getSqlEliminar() {
-		return sqlEliminar;
+		return sqlEliminarContacto;
 	}
 
 	@Override
 	protected String getSqlExiste() {
-		return sqlExiste;
+		return sqlExisteContacto;
 	}
 
 	@Override
 	protected String getSqlExisteExcluyendoId() {
-		return sqlExisteExcluyendoId;
+		return sqlExisteExcluyendoIdContacto;
 	}
 
 }

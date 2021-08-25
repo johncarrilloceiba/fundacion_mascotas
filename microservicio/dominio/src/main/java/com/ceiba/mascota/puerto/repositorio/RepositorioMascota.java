@@ -6,7 +6,7 @@ public interface RepositorioMascota {
 
 	public Long crear(Mascota mascota);
 
-	public void actualizar(Mascota mascota);
+	public Integer actualizar(Mascota mascota);
 
 	public void eliminar(Long id);
 

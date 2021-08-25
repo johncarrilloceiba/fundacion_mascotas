@@ -14,9 +14,9 @@ public class ServicioActualizarMascota {
 		this.repositorioMascota = repositorioMascota;
 	}
 
-	public void ejecutar(Mascota mascota) {
+	public Integer ejecutar(Mascota mascota) {
         validarExistenciaPrevia(mascota);
-        this.repositorioMascota.actualizar(mascota);
+        return this.repositorioMascota.actualizar(mascota);
     }
 
 	private void validarExistenciaPrevia(Mascota mascota) {

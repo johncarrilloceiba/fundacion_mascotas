@@ -12,19 +12,19 @@ import com.ceiba.repositoriogenerico.RepositorioGenericoMysql;
 public class RepositorioMascotaMysql extends RepositorioGenericoMysql<Mascota> implements RepositorioMascota {
 
     @SqlStatement(namespace="mascota", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearMascota;
 
     @SqlStatement(namespace="mascota", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarMascota;
 
     @SqlStatement(namespace="mascota", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarMascota;
 
     @SqlStatement(namespace="mascota", value="existe")
-    private static String sqlExiste;
+    private static String sqlExisteMascota;
 
     @SqlStatement(namespace="mascota", value="existeExcluyendoId") 
-    private static String sqlExisteExcluyendoId;
+    private static String sqlExisteExcluyendoIdMascota;
 
     public RepositorioMascotaMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
     	super(customNamedParameterJdbcTemplate);
@@ -32,27 +32,27 @@ public class RepositorioMascotaMysql extends RepositorioGenericoMysql<Mascota> i
 
     @Override
 	protected String getSqlCrear() {
-		return sqlCrear;
+		return sqlCrearMascota;
 	}
 
 	@Override
 	protected String getSqlActualizar() {
-		return sqlActualizar;
+		return sqlActualizarMascota;
 	}
 
 	@Override
 	protected String getSqlEliminar() {
-		return sqlEliminar;
+		return sqlEliminarMascota;
 	}
 
 	@Override
 	protected String getSqlExiste() {
-		return sqlExiste;
+		return sqlExisteMascota;
 	}
 
 	@Override
 	protected String getSqlExisteExcluyendoId() {
-		return sqlExisteExcluyendoId;
+		return sqlExisteExcluyendoIdMascota;
 	}
 
 }

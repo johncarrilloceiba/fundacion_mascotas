@@ -6,7 +6,7 @@ public interface RepositorioDonacion {
 
 	public Long crear(Donacion donacion);
 
-	public void actualizar(Donacion donacion);
+	public Integer actualizar(Donacion donacion);
 
 	public void eliminar(Long id);
 

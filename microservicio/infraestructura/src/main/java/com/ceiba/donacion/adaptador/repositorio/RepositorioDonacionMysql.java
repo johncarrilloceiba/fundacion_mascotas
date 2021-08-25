@@ -12,13 +12,16 @@ import com.ceiba.repositoriogenerico.RepositorioGenericoMysql;
 public class RepositorioDonacionMysql extends RepositorioGenericoMysql<Donacion> implements RepositorioDonacion {
 
     @SqlStatement(namespace="donacion", value="crear")
-    private static String sqlCrear;
+    private static String sqlCrearDonacion;
 
     @SqlStatement(namespace="donacion", value="actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarDonacion;
 
     @SqlStatement(namespace="donacion", value="eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarDonacion;
+
+    private static String sqlExiste;
+    private static String sqlExisteExcluyendoId;
 
     public RepositorioDonacionMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
     	super(customNamedParameterJdbcTemplate);
@@ -26,27 +29,27 @@ public class RepositorioDonacionMysql extends RepositorioGenericoMysql<Donacion>
 
     @Override
 	protected String getSqlCrear() {
-		return sqlCrear;
+		return sqlCrearDonacion;
 	}
 
 	@Override
 	protected String getSqlActualizar() {
-		return sqlActualizar;
+		return sqlActualizarDonacion;
 	}
 
 	@Override
 	protected String getSqlEliminar() {
-		return sqlEliminar;
+		return sqlEliminarDonacion;
 	}
 
 	@Override
 	protected String getSqlExiste() {
-		return null;
+		return sqlExiste;
 	}
 
 	@Override
 	protected String getSqlExisteExcluyendoId() {
-		return null;
+		return sqlExisteExcluyendoId;
 	}
 
 }

@@ -6,7 +6,7 @@ public interface RepositorioRaza {
 
 	public Long crear(Raza raza);
 
-	public void actualizar(Raza raza);
+	public Integer actualizar(Raza raza);
 
 	public void eliminar(Long id);
 

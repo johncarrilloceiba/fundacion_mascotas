@@ -32,8 +32,8 @@ public abstract class RepositorioGenericoMysql<T> {
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(this.getSqlExiste(),paramSource, Boolean.class);
     }
 
-    public void actualizar(T entidad) {
-        this.customNamedParameterJdbcTemplate.actualizar(entidad, this.getSqlActualizar());
+    public Integer actualizar(T entidad) {
+        return this.customNamedParameterJdbcTemplate.actualizar(entidad, this.getSqlActualizar());
     }
 
     public boolean existeExcluyendoId(Long id, String nombre) {

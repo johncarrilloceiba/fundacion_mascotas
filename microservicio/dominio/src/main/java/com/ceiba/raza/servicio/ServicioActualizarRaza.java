@@ -14,9 +14,9 @@ public class ServicioActualizarRaza {
 		this.repositorioRaza = repositorioRaza;
 	}
 
-	public void ejecutar(Raza raza) {
+	public Integer ejecutar(Raza raza) {
         validarExistenciaPrevia(raza);
-        this.repositorioRaza.actualizar(raza);
+        return this.repositorioRaza.actualizar(raza);
     }
 
 	private void validarExistenciaPrevia(Raza raza) {

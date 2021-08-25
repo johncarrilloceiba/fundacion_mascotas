@@ -1,5 +1,6 @@
 package com.ceiba.raza.servicio;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -12,14 +13,32 @@ import com.ceiba.raza.servicio.testdatabuilder.RazaTestDataBuilder;
 public class ServicioActualizarRazaTest {
 
 	@Test
-    public void validarRazaExistenciaPreviaTest() {
-        // arrange
+	public void validarRazaExistenciaPreviaTest() {
+		// arrange
 		Raza raza = new RazaTestDataBuilder().conId(1L).build();
-        RepositorioRaza repositorioRaza = Mockito.mock(RepositorioRaza.class);
-        Mockito.when(repositorioRaza.existeExcluyendoId(Mockito.anyLong(),Mockito.anyString())).thenReturn(true);
-        ServicioActualizarRaza servicioActualizarRaza = new ServicioActualizarRaza(repositorioRaza);
+		RepositorioRaza repositorioRaza = Mockito.mock(RepositorioRaza.class);
+		Mockito.when(repositorioRaza.existeExcluyendoId(Mockito.anyLong(), Mockito.anyString())).thenReturn(true);
+		ServicioActualizarRaza servicioActualizarRaza = new ServicioActualizarRaza(repositorioRaza);
 
-        // act - assert
-        BasePrueba.assertThrows(() -> servicioActualizarRaza.ejecutar(raza), ExcepcionDuplicidad.class, "La raza ya existe en el sistema.");
-    }
+		// act - assert
+		BasePrueba.assertThrows(() -> servicioActualizarRaza.ejecutar(raza), ExcepcionDuplicidad.class,
+				"La raza ya existe en el sistema.");
+	}
+
+	@Test
+	public void validarRazaSinExistenciaPreviaTest() {
+		// arrange
+		Integer valorEsperado = 1;
+		Raza raza = new RazaTestDataBuilder().conId(1L).build();
+		RepositorioRaza repositorioRaza = Mockito.mock(RepositorioRaza.class);
+		Mockito.when(repositorioRaza.existeExcluyendoId(Mockito.anyLong(), Mockito.anyString())).thenReturn(false);
+		Mockito.when(repositorioRaza.actualizar(Mockito.any())).thenReturn(1);
+		ServicioActualizarRaza servicioActualizarRaza = new ServicioActualizarRaza(repositorioRaza);
+
+		// act
+		Integer respuesta = servicioActualizarRaza.ejecutar(raza);
+
+		// assert
+		Assert.assertEquals(valorEsperado, respuesta);
+	}
 }

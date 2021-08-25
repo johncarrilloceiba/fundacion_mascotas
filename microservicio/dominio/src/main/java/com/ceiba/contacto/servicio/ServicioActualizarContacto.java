@@ -14,9 +14,9 @@ public class ServicioActualizarContacto {
 		this.repositorioContacto = repositorioContacto;
 	}
 
-	public void ejecutar(Contacto contacto) {
+	public Integer ejecutar(Contacto contacto) {
         validarExistenciaPrevia(contacto);
-        this.repositorioContacto.actualizar(contacto);
+        return this.repositorioContacto.actualizar(contacto);
     }
 
 	private void validarExistenciaPrevia(Contacto contacto) {

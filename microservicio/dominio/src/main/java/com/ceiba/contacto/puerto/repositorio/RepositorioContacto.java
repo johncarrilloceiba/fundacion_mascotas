@@ -6,7 +6,7 @@ public interface RepositorioContacto {
 
 	public Long crear(Contacto contacto);
 
-	public void actualizar(Contacto contacto);
+	public Integer actualizar(Contacto contacto);
 
 	public void eliminar(Long id);
 

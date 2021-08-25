@@ -11,8 +11,8 @@ public class ServicioActualizarDonacion {
 		this.repositorioDonacion = repositorioDonacion;
 	}
 	
-	public void ejecutar(Donacion donacion) {
-        this.repositorioDonacion.actualizar(donacion);
+	public Integer ejecutar(Donacion donacion) {
+        return this.repositorioDonacion.actualizar(donacion);
     }
 
 }
