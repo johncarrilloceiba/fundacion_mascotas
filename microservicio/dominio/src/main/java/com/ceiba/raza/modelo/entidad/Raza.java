@@ -5,7 +5,6 @@ import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMinima;
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMaxima;
 import lombok.Getter;
 
-@Getter
 public class Raza {
 
 	private Long id;
@@ -25,6 +24,14 @@ public class Raza {
 
 		this.id = id;
 		this.nombre = nombre;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNombre() {
+		return nombre;
 	}
 
 	

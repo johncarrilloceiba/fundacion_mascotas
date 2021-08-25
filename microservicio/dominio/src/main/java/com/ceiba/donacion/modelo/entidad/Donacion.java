@@ -10,7 +10,6 @@ import com.ceiba.mascota.modelo.entidad.Mascota;
 
 import lombok.Getter;
 
-@Getter
 public class Donacion {
 
 	private Long id;
@@ -47,6 +46,30 @@ public class Donacion {
 		this.mascota = mascota;
 		this.idMascota = this.mascota.getId();
 	}
+	
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public Double getValor() {
+		return valor;
+	}
+
+
+
+	public Mascota getMascota() {
+		return mascota;
+	}
+
+
+
+	public Long getIdMascota() {
+		return idMascota;
+	}
+
+
 
 	private static void validarValorMinimo(Double valor, Mascota mascota) {
 		if (Boolean.TRUE.equals(mascota.esCumpleanos()) && valor < VALOR_DONACION_MINIMO_CUMPLEANOS) {

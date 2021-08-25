@@ -6,7 +6,7 @@ import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMaxima;
 import static com.ceiba.dominio.ValidadorArgumento.validarLongitudMinima;
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
-@Getter
+
 public class Contacto {
 
 	private Long id;
@@ -38,6 +38,18 @@ public class Contacto {
 		this.id = id;
 		this.nombre = nombre;
 		this.numero = numero;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public String getNumero() {
+		return numero;
 	}
 
 	

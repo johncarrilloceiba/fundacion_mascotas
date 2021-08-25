@@ -15,7 +15,6 @@ import com.ceiba.raza.modelo.entidad.Raza;
 
 import lombok.Getter;
 
-@Getter
 public class Mascota {
 
 	private Long id;
@@ -85,6 +84,39 @@ public class Mascota {
 			return true;
 		}
 		return false;
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public LocalDateTime getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public LocalDateTime getFechaAdopcion() {
+		return fechaAdopcion;
+	}
+
+	public Contacto getContacto() {
+		return contacto;
+	}
+
+	public Raza getRaza() {
+		return raza;
+	}
+
+	public Long getIdRaza() {
+		return idRaza;
+	}
+
+	public Long getIdContacto() {
+		return idContacto;
 	}
 
 	private static void validarEdadMinimaMascotaParaAdopcion (Mascota mascota, LocalDateTime fechaAdopcion) {
