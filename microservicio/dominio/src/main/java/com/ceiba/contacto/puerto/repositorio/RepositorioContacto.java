@@ -8,7 +8,7 @@ public interface RepositorioContacto {
 
 	public Integer actualizar(Contacto contacto);
 
-	public void eliminar(Long id);
+	public Integer eliminar(Long id);
 
 	public boolean existe(String nombre);
 

@@ -10,7 +10,7 @@ public class ServicioEliminarRaza {
 		this.repositorioRaza = repositorioRaza;
 	}
 	
-	public void ejecutar(Long id) {
-        this.repositorioRaza.eliminar(id);
+	public Integer ejecutar(Long id) {
+        return this.repositorioRaza.eliminar(id);
     }
 }

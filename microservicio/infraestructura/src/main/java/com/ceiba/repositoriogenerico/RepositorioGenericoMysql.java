@@ -18,11 +18,11 @@ public abstract class RepositorioGenericoMysql<T> {
         return this.customNamedParameterJdbcTemplate.crear(entidad, this.getSqlCrear());
     }
 
-    public void eliminar(Long id) {
+    public Integer eliminar(Long id) {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(this.getSqlEliminar(), paramSource);
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(this.getSqlEliminar(), paramSource);
     }
 
     public boolean existe(String nombre) {

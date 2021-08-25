@@ -8,7 +8,7 @@ public interface RepositorioMascota {
 
 	public Integer actualizar(Mascota mascota);
 
-	public void eliminar(Long id);
+	public Integer eliminar(Long id);
 
 	public boolean existe(String nombre);
 

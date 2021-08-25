@@ -8,6 +8,6 @@ public interface RepositorioDonacion {
 
 	public Integer actualizar(Donacion donacion);
 
-	public void eliminar(Long id);
+	public Integer eliminar(Long id);
 
 }

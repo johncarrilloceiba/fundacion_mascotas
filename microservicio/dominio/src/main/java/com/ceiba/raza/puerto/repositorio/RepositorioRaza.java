@@ -8,7 +8,7 @@ public interface RepositorioRaza {
 
 	public Integer actualizar(Raza raza);
 
-	public void eliminar(Long id);
+	public Integer eliminar(Long id);
 
 	public boolean existe(String nombre);
 
